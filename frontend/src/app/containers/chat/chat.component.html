@@ -1,0 +1,39 @@
+<div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-screen">
+<div class="container max-w-2xl mx-auto bg-gray-900 text-white p-4 rounded-md ">
+  <h1 class="text-4xl font-bold mb-10 text-center">Aplicacion-Chat</h1>
+
+  <app-usernname (userNameEvent)="userNameUpdate($event)" *ngIf="!userName"></app-usernname>
+  <div class="flex justify-between items-start">
+    <div class="w-2/6 bg-green-400 rounded-md p-4">
+      <h2 class="font-bold text-xl mb-2">Lista de usuarios</h2>
+      <div class="chatbox__user--active">
+        <ul class="list-disc list-inside">
+          <li class="mb-2" *ngFor="let user of userList">{{ user }}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="w-2/3 bg-gray-700 rounded-md p-4">
+      <h2 class="mb-2">Caja de Chat:</h2>
+      <div class="overflow-y-scroll h-96">
+        <div class="chatbox__messages mb-2" *ngFor="let msg of messageList" [ngClass]="{mine: msg.mine}">
+          <div class="user-message">
+            <div class="message-box p-4 bg-gray-800 rounded-md shadow-md">
+              <p class="font-bold text-sm mb-1 ">{{ msg.userName}}:</p>
+              <p class="text-gray-400">{{ msg.message }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex items-center mt-4">
+        <input class="border border-gray-600 rounded-lg py-2 px-3 mr-2 w-full focus:outline-none focus:border-purple-500 text-gray-800 placeholder-gray-400 placeholder-opacity-75" 
+        type="text" 
+        [(ngModel)]="message" 
+        placeholder="Escribe algo...">
+ 
+        <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded" (click)="sendMessage()">Enviar</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+</div>
